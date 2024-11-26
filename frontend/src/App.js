@@ -1,22 +1,47 @@
 // src/App.js
 import React from 'react';
 import ChatWindow from './components/ChatWindow';
+// eslint-disable-next-line import/no-unresolved
+import { MessageCircle} from 'lucide-react';
+const WaveBackground = () => (
+  <div className="absolute inset-0 -z-10 overflow-hidden">
+    <svg className="absolute w-full h-64 transform translate-y-[-50%] opacity-5" viewBox="0 0 1440 320">
+      <path 
+        fill="currentColor" 
+        className="text-cyan-500 animate-wave-slow"
+        d="M0,32L48,37.3C96,43,192,53,288,80C384,107,480,149,576,144C672,139,768,85,864,69.3C960,53,1056,75,1152,96C1248,117,1344,139,1392,149.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+      >
+        <animate
+          attributeName="d"
+          dur="10s"
+          repeatCount="indefinite"
+          values="M0,32L48,37.3C96,43,192,53,288,80C384,107,480,149,576,144C672,139,768,85,864,69.3C960,53,1056,75,1152,96C1248,117,1344,139,1392,149.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z;
+                 M0,64L48,74.7C96,85,192,107,288,122.7C384,139,480,149,576,144C672,139,768,117,864,101.3C960,85,1056,75,1152,80C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+        />
+      </path>
+    </svg>
+  </div>
+);
 
 export default function App() {
   return (
-    <div className="flex h-screen bg-gray-100">
-      <div className="m-auto w-full max-w-4xl bg-white rounded-lg shadow-xl overflow-hidden">
-        <div className="bg-indigo-600 p-4">
-          <h1 className="text-2xl text-white font-bold">
-            Accessibility Education Assistant
-          </h1>
-          <p className="text-indigo-100">
-            Ask questions about making education accessible for visually impaired students
-          </p>
+    <div className="min-h-screen bg-gray-950 text-gray-100">
+      <div className="container mx-auto px-4 py-8 h-screen">
+        <div className="bg-gray-900/50 backdrop-blur-xl rounded-xl shadow-2xl overflow-hidden h-[95vh] border border-gray-800 relative">
+          <WaveBackground />
+          <div className="bg-gradient-to-r from-gray-900 to-gray-900/95 p-6 border-b border-gray-800 relative">
+            <div className="flex items-center space-x-3">
+              <MessageCircle className="w-8 h-8 text-cyan-500" />
+              <div>
+                <h1 className="text-2xl font-bold mb-1 animate-fade-in">
+                Access-Ed-Assistant
+                </h1>
+              </div>
+            </div>
+          </div>
+          <ChatWindow />
         </div>
-        <ChatWindow />
       </div>
     </div>
   );
 }
-
