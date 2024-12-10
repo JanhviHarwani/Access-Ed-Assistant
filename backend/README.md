@@ -25,3 +25,8 @@ cd src
 python main.py
 
 
+Last update:
+process processed folder
+need to scrape off of urls.txt has content for research on Research on accessing CS
+
+

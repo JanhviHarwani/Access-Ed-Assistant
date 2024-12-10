@@ -8,6 +8,56 @@ class RAGHandler:
         self.client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
         # Define topics that are within scope
         self.valid_topics = {
+            
+            # Core Accessibility
+            'accessible for cs',
+            'accessibility',
+            'universal design',
+            
+            # Disabilities & Impairments
+            'blindness',
+            'visual impairment',
+            'deafness',
+            'hearing impairment',
+            
+            # Technical Solutions
+            'assistive technology',
+            'screen reader',
+            'braille',
+            'alt text and image descriptions',
+            'making documents accessible',
+            'making pdfs accessible',
+            
+            # Education Specific
+            'making cs education inclusive',
+            'education',
+            'teaching strategies',
+            'classroom adaptation',
+            'curriculum',
+            'learning',
+            
+            # Support & Resources
+            'accommodations',
+            # sticking to one work keyword
+            # 'lived experience of coding with disability', 
+            'organizations',
+            'research on accessing cs'
+            'cs accessible',
+            'course accessible',
+            'cs',
+            'accessible by alt text',
+            'alt text',
+            'deafness',
+            'cs inclusive',
+            'making cs inclusive',
+            'making documents accessible',
+            'making pdfs accessible',
+            'organizations',
+            'organisations',
+            'pdfs'
+            'experience',
+            'computer science',
+            'computer science accessible'
             'accessibility',
             'disability',
             'visual impairment',
@@ -26,7 +76,10 @@ class RAGHandler:
             'student',
             'instructor',
             'materials',
-            'curriculum'
+            'curriculum',
+            'ide',
+            'vs',
+            'project'
         }
 
     def generate_response(self, query: str, retrieved_docs: List[Dict], conversation_history: str = "") -> str:

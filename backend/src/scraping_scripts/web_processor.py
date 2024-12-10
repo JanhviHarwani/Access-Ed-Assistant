@@ -125,6 +125,7 @@ class WebProcessor:
         except Exception as e:
             logger.error(f"Unexpected error processing {url}: {e}")
             return None
+    
     def save_document(self, doc: Dict):
         """Save processed document with better formatting.
         
@@ -168,27 +169,40 @@ class WebProcessor:
         except Exception as e:
             logger.error(f"Error saving document: {str(e)}")
             raise
-    def process_urls_from_file(self, urls_file: str) -> int:
-        """Process URLs from a file."""
+    def process_urls_from_file(self, urls_file: str) -> None:
+        """Process URLs from a file and log successes and failures."""
         try:
             with open(urls_file, 'r') as f:
-                urls = [line.strip() for line in f 
-                       if line.strip() and not line.startswith('#')]
+                urls = [line.strip() for line in f if line.strip() and not line.startswith('#')]
             
             logger.info(f"Found {len(urls)} URLs to process")
             
             processed_count = 0
+            failed_urls = []
+            
             for url in urls:
                 doc = self.process_url(url)
-                if doc and self.save_document(doc):
-                    processed_count += 1
+                if doc:
+                    try:
+                        self.save_document(doc)
+                        processed_count += 1
+                    except Exception as e:
+                        logger.error(f"Error saving document for URL {url}: {e}")
+                        failed_urls.append(url)
+                else:
+                    failed_urls.append(url)
+                
                 time.sleep(2)  # Be nice to servers
             
-            return processed_count
+            logger.info(f"Processing complete! Successfully processed {processed_count} URLs")
+            if failed_urls:
+                logger.warning(f"Failed to process {len(failed_urls)} URLs:")
+                for failed_url in failed_urls:
+                    logger.warning(f"  - {failed_url}")
             
         except Exception as e:
             logger.error(f"Error processing URLs from file: {e}")
-            return 0
+
 
 def main():
     try:
