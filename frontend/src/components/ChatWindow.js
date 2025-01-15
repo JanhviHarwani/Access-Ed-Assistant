@@ -92,7 +92,7 @@ export default function ChatWindow() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:8000/chat", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
