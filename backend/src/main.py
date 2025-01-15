@@ -1,4 +1,5 @@
 # backend/main.py
+import os
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -28,10 +29,15 @@ rag_handler = RAGHandler()
 # Process documents on startup
 @app.on_event("startup")
 async def startup_event():
-    print("Processing documents...")
-    documents = doc_processor.process_documents()
-    pinecone_manager.add_documents(documents)
-    print(f"Processed {len(documents)} document chunks")
+    RELOAD_DOCUMENTS = os.getenv('RELOAD_DOCUMENTS', 'false').lower() == 'true'
+    
+    if RELOAD_DOCUMENTS:
+        print("Processing documents and updating Pinecone index...")
+        documents = doc_processor.process_documents()
+        pinecone_manager.add_documents(documents)
+        print(f"Processed and uploaded {len(documents)} document chunks")
+    else:
+        print("Using existing Pinecone index - skipping document processing")
 
 # Pydantic models
 class Message(BaseModel):

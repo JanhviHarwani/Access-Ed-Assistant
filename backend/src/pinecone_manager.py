@@ -7,6 +7,7 @@ import os
 from langchain_huggingface import HuggingFaceEmbeddings
 
 class PineconeManager:
+
     def __init__(self):
         self.pc = Pinecone(api_key=os.getenv('PINECONE_API_KEY'))
         self.index_name = "accessibility-index"
@@ -64,3 +65,7 @@ class PineconeManager:
         )
         
         return results
+    def delete_all_vectors(self):
+    # Delete all vectors in the index
+        self.index.delete(deleteAll=True)
+        print("Deleted all vectors from the index")
