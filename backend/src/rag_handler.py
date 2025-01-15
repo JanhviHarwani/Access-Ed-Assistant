@@ -79,7 +79,68 @@ class RAGHandler:
             'curriculum',
             'ide',
             'vs',
-            'project'
+            'project',
+            'accessing computer science',
+'accessing programming',
+'accessing coding',
+'accessible programming',
+'accessible IDE',
+'coding with a screen reader',
+'making pdfs accessible',
+'making slides accessible',
+'making presentations accessible',
+'making lectures accessible',
+'accessible for cs',
+'accessibility',
+'universal design',
+
+
+
+'blindness',
+'blind',
+'low vision',
+'vision impairment',
+'visually impaired'
+'deafness',
+'hearing impairment,'
+'lived experience',
+
+
+'assistive technology',
+'screen reader',
+'braille',
+'alt text',
+'alternative text',
+'image description',
+'making documents accessible',
+'making pdfs accessible',
+'making slides accessible',
+'making presentations accessible',
+'making lectures accessible',
+'accessible coding',
+'IDE',
+
+'making cs education inclusive',
+'education',
+'teaching strategies',
+'classroom adaptation',
+'curriculum',
+'learning',
+'syllabus',
+
+
+'accommodations',
+'lived experience of coding with disability',
+'organizations',
+'research on accessing cs',
+
+
+'accessing computer science',
+'accessing programming',
+'accessing coding',
+'accessible programming',
+'accessible IDE',
+'coding with a screen reader',
         }
 
     def generate_response(self, query: str, retrieved_docs: List[Dict], conversation_history: str = "") -> str:
