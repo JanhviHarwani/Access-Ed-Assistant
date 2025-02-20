@@ -34,6 +34,7 @@ async def startup_event():
     if RELOAD_DOCUMENTS:
         print("Processing documents and updating Pinecone index...")
         documents = doc_processor.process_documents()
+        print("here")
         pinecone_manager.add_documents(documents)
         print(f"Processed and uploaded {len(documents)} document chunks")
     else:
